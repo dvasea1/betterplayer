@@ -32,7 +32,7 @@ class _NotificationPlayerPageState extends State<NotificationPlayerPage> {
         showNotification: true,
         title: "Elephant dream",
         author: "Some author",
-        imageUrl: Constants.catImageUrl,
+        imageUrl: 'https://d2wvqzrt1envbc.cloudfront.net/df977ac5-1c7d-48b8-9fd1-10e6413a3ad2.jpg',
       ),
     );
     _betterPlayerController.setupDataSource(dataSource);

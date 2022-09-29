@@ -68,6 +68,9 @@ import java.lang.IllegalStateException
 import java.util.*
 import kotlin.math.max
 import kotlin.math.min
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 
 internal class BetterPlayer(
     context: Context,
@@ -239,10 +242,50 @@ internal class BetterPlayer(
                 player: Player,
                 callback: BitmapCallback
             ): Bitmap? {
+               /* var inputStream: InputStream? = null
+                var thread = Thread {
+                    try {
+                        val url = URL(imageUrl)
+                        var connection = url.openConnection() as HttpURLConnection
+                         inputStream = connection.inputStream
+                        val options = BitmapFactory.Options()
+                        options.inJustDecodeBounds = true
+                        BitmapFactory.decodeStream(inputStream!!, null, options)
+                        inputStream?.close()
+                        connection = url.openConnection() as HttpURLConnection
+                        inputStream = connection.inputStream
+                        options.inSampleSize = 1
+                        options.inJustDecodeBounds = false
+                        bitmap = BitmapFactory.decodeStream(inputStream!!, null, options)
+                        bitmap?.let { bitmap ->
+                            mediaSession?.setMetadata(
+                                MediaMetadataCompat.Builder()
+                                    .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap)
+                                    .build()
+                            )
+                            //callback.onBitmap(bitmap)
+                        }
+                    } catch (exception: Exception) {
+                        Log.e(TAG, "Failed to get bitmap from external url: $imageUrl")
+                        null
+                    } finally {
+                        try {
+                            inputStream?.close()
+                        } catch (exception: Exception) {
+                            Log.e(TAG, "Failed to close bitmap input stream/")
+                        }
+                    }
+                }
+                thread.start()*/
                 if (imageUrl == null) {
                     return null
                 }
                 if (bitmap != null) {
+                    mediaSession?.setMetadata(
+                        MediaMetadataCompat.Builder()
+                            .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap)
+                            .build()
+                    )
                     return bitmap
                 }
                 val imageWorkRequest = OneTimeWorkRequest.Builder(ImageWorker::class.java)
@@ -266,6 +309,11 @@ internal class BetterPlayer(
                                 //break anything.
                                 bitmap = BitmapFactory.decodeFile(filePath)
                                 bitmap?.let { bitmap ->
+                                    mediaSession?.setMetadata(
+                                        MediaMetadataCompat.Builder()
+                                            .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap)
+                                            .build()
+                                    )
                                     callback.onBitmap(bitmap)
                                 }
                             }
