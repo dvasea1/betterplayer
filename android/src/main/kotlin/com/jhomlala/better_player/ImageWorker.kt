@@ -110,6 +110,6 @@ class ImageWorker(
     companion object {
         private const val TAG = "ImageWorker"
         private const val IMAGE_EXTENSION = ".png"
-        private const val DEFAULT_NOTIFICATION_IMAGE_SIZE_PX = 256
+        private const val DEFAULT_NOTIFICATION_IMAGE_SIZE_PX = 1024
     }
 }
