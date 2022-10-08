@@ -63,6 +63,9 @@ class BetterPlayerService : Service() {
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
+        System.out.println("onTaskRemoved");
+       /* val nMgr: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        nMgr.cancelAll()*/
         try {
             val notificationManager =
                 getSystemService(
