@@ -147,7 +147,6 @@ class _BetterPlayerSubtitlesDrawerState extends State<BetterPlayerSubtitlesDrawe
   }
 
   Widget _buildHtmlWidget(String text, TextStyle textStyle) {
-    print('thishtml${text.contains('{\\an8}')}$text ');
     return HtmlWidget(
       text.contains('{\\an8}') ? text.replaceFirst('{\\an8}', '') : text,
       textStyle: textStyle,
