@@ -363,11 +363,9 @@ internal class BetterPlayer(
 
             exoPlayer?.let {
                 setPlayer(ForwardingPlayer(exoPlayer))
-                setUseNextAction(true)
-                setUsePreviousAction(true)
+                setUseNextAction(false)
+                setUsePreviousAction(false)
                 setUseStopAction(false)
-                setUsePlayPauseActions(true)
-                setUseStopAction(true)
             }
 
             setupMediaSession(context)?.let {
@@ -381,7 +379,7 @@ internal class BetterPlayer(
                 val playbackState: PlaybackStateCompat = if (exoPlayer?.isPlaying == true) {
                     PlaybackStateCompat.Builder()
                         .setActions(PlaybackStateCompat.ACTION_SEEK_TO)
-                        .setState(PlaybackStateCompat.STATE_PAUSED, position, 1.0f)
+                        .setState(PlaybackStateCompat.STATE_PLAYING, position, 1.0f)
                         .build()
                 } else {
                     PlaybackStateCompat.Builder()
