@@ -366,6 +366,7 @@ internal class BetterPlayer(
                 setUseNextAction(false)
                 setUsePreviousAction(false)
                 setUseStopAction(false)
+                setUsePlayPauseActions(true)
             }
 
             setupMediaSession(context)?.let {
