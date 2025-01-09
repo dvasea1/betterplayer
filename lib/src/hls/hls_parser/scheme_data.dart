@@ -1,7 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
-
 class SchemeData {
   SchemeData({
 //    @required this.uuid,
@@ -29,14 +27,14 @@ class SchemeData {
 
   SchemeData copyWithData(Uint8List? data) => SchemeData(
 //        uuid: uuid,
-        licenseServerUrl: licenseServerUrl,
-        mimeType: mimeType,
-        data: data,
-        requiresSecureDecryption: requiresSecureDecryption,
-      );
+    licenseServerUrl: licenseServerUrl,
+    mimeType: mimeType,
+    data: data,
+    requiresSecureDecryption: requiresSecureDecryption,
+  );
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (other is SchemeData) {
       return other.mimeType == mimeType &&
           other.licenseServerUrl == licenseServerUrl &&
@@ -49,8 +47,8 @@ class SchemeData {
   }
 
   @override
-  int get hashCode => hashValues(
-      /*uuid, */
+  int get hashCode => Object.hash(
+    /*uuid, */
       licenseServerUrl,
       mimeType,
       data,
